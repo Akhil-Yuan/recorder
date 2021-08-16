@@ -1,0 +1,77 @@
+.item-style{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.text-style{
+  text-align: center;
+}
+
+.board {
+  overflow: hidden;
+  border-bottom: 2rpx solid #ececec;
+  background-color: #f7f8fa;
+}
+/*列布局*/
+.cell{
+  display: flex;
+  margin: 15rpx;
+}
+.cell .cell-bd{
+  flex:1;
+  position: relative;
+}
+/**只显示一行*/
+.date{
+  font-size: 30rpx;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  width: 100%;
+  margin: 30rpx 35rpx;
+}
+/* 文件展示 */
+.voiceOprt {
+  display: inline-block;
+  margin: 0 10rpx;
+}
+/* 底部 */
+.record-style {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  top: 76%;
+  width: 100%;
+}
+picker{
+  padding: 26rpx;
+}
+/* 底部下拉框 */
+.section {
+  width: 100%;
+  border-bottom: 2rpx solid #ececec;
+  margin-bottom: 35rpx;
+}
+.tipTxt, .showTxt {
+  display: inline-block;
+}
+.tipTxt {
+  width: 46%;
+  margin: 2% 0 2% 8% ;
+}
+.showTxt {
+  width: 38%;
+  font-size: 28rpx;
+  color: #999;
+  text-align: right;
+}
+/* 底部按钮 */
+.operate {
+  margin: 0;
+  padding: 0 5%;
+  width: 40%;
+  display: inline-block;
+}
+.operateBtn {
+  width: 100% !important;
+  margin: 0 15%;
+}

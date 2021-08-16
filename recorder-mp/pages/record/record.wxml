@@ -1,0 +1,30 @@
+<!-- index.wxml -->
+<scroll-view>
+  <view wx:if="{{voicesList}}" class="common-list" style="margin-bottom:120rpx;">
+    <block wx:for="{{voicesList}}" wx:key="index">
+      <view class="board">
+        <view class="cell">
+          <view class="cell-bd">
+            <view class="date">录音内容: {{item.text}}</view>
+          </view>
+          <van-button plain class="voiceOprt" type="primary" bindtap="playRecord" data-key="{{item.savedFilePath}}" data-id="{{index}}">播放</van-button>
+          <van-button plain class="voiceOprt" type="danger" bindtap="deleteVoice" data-key="{{item.savedFilePath}}" data-id="{{index}}"  data-text="{{item.text}}">删除</van-button>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<van-notice-bar wx:if="{{uploadedTip}}" mode="closeable" text="您已于{{uploadedTime}}提交录音" />
+
+<view class="record-style" >
+  <view class="section">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{showTxt}}">
+      <view class="tipTxt">选择录音内容</view>
+      <view class="showTxt">{{picktype==null ? showTxt[0] : showTxt[index]}}</view>
+    </picker>
+  </view>
+  <view>
+    <van-button bind:click="uploadVoice" class="operate" color="#6495ed" block>提交</van-button>
+    <van-button bindtouchstart="touchdown" bindtouchend="touchup" class="operate" color="#6495ed" plain block disabled="{{!showTxt[0]}}">{{showTxt[0] ? showTxt[index] : "录音完毕"}}</van-button>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/record/record",
+    "pages/login/login",
+    "pages/enroll/enroll"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#007acc",
+    "navigationBarTitleText": "录音系统",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}
