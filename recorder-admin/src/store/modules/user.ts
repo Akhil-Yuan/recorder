@@ -2,6 +2,7 @@ import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-dec
 import store from '@/store'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import { login, logout, getUserInfo } from '@/api/user'
+import { remove } from 'js-cookie'
 
 export interface IUserState {
   token: string,
@@ -46,11 +47,6 @@ class User extends VuexModule implements IUserState {
     this.roles = roles
   }
 
-  @Mutation
-  private SET_EMAIL(email: string) {
-    this.email = email
-  }
-
   @Action
   public async Login(userInfo: { username: string, password: string }) {
     let { username, password } = userInfo
@@ -67,6 +63,35 @@ class User extends VuexModule implements IUserState {
     this.SET_ROLES([])
   }
 
+  @Action
+  public async GetUserInfo() {
+    if (this.token === '') {
+      throw Error('GetUserInfo: token is undefined!')
+    }
+    const { data } = await getUserInfo({})
+    if (!data) {
+      throw Error('Verification failed, please Login again.')
+    }
+    const { roles, name, avatar, introduction } = data.user
+    if (!roles || roles.length <= 0) {
+      throw Error('GetUserInfo: roles must be a non-null array!')
+    }
+    this.SET_ROLES(roles)
+    this.SET_NAME(name)
+    this.SET_AVATAR(avatar)
+    this.SET_INTRODUCTION(introduction)
+  }
+
+  @Action
+  public async LogOut() {
+    if (this.token === '') {
+      throw Error('Logout: token is undefined!')
+    }
+    await logout()
+    removeToken()
+    this.SET_TOKEN('')
+    this.SET_ROLES([])
+  }
 }
 
 export const UserModule = getModule(User)
