@@ -62,7 +62,6 @@ import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
-
 @Component({
   name: 'Navbar',
   components: {
@@ -74,19 +73,15 @@ export default class extends Vue {
   get sidebar() {
     return AppModule.sidebar
   }
-
   get device() {
     return AppModule.device.toString()
   }
-
   get avatar() {
     return UserModule.avatar
   }
-
   private toggleSideBar() {
     AppModule.ToggleSideBar(false)
   }
-
   private async logout() {
     await UserModule.LogOut()
     this.$router.push(`/login?redirect=${this.$route.fullPath}`)
@@ -101,7 +96,6 @@ export default class extends Vue {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
-
   .hamburger-container {
     line-height: 46px;
     height: 100%;
@@ -110,16 +104,13 @@ export default class extends Vue {
     cursor: pointer;
     transition: background .3s;
     -webkit-tap-highlight-color:transparent;
-    
     &:hover {
       background: rgba(0, 0, 0, .025)
     }
   }
-
   .breadcrumb-container {
     float: left;
   }
-
   .right-menu {
     float: right;
     height: 100%;
@@ -127,7 +118,6 @@ export default class extends Vue {
     &:focus {
       outline: none;
     }
-
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
@@ -135,7 +125,6 @@ export default class extends Vue {
       font-size: 18px;
       color: #5a5e66;
       vertical-align: text-bottom;
-
       &.hover-effect {
         cursor: pointer;
         transition: background .3s;
@@ -144,22 +133,17 @@ export default class extends Vue {
         }
       }
     }
-
     .avatar-container {
       margin-right: 30px;
-
-
       .avatar-wrapper {
         margin-top: 5px;
         position: relative;
-
         .user-avatar {
           cursor: pointer;
           width: 40px;
           height: 40px;
           border-radius: 10px;
         }
-
         .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;

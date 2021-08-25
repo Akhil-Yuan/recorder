@@ -1,19 +1,18 @@
 <template>
-  <secssion class="app-main">
+  <section class="app-main">
     <transition
       name="fade-transform"
       mode="out-in"
     >
       <router-view />
     </transition>
-  </secssion>
+  </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-
 @Component({
-  name: 'Appmain'
+  name: 'AppMain'
 })
 export default class extends Vue {}
 </script>

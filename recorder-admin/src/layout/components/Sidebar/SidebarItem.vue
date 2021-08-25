@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!item.meta || !item.meta.hidden"
-    :class="['menu-wrapper', isCollapse ? 'somple-mode': 'full-mode', {'first-level': isFirstLevel}]"
+    :class="['menu-wrapper', isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
   >
     <template v-if="theOnlyOneChild && !theOnlyOneChild.children">
       <sidebar-item-link
@@ -30,7 +30,7 @@
     >
       <template slot="title">
         <svg-icon
-          v-if="item.meta && item.meta.title"
+          v-if="item.meta && item.meta.icon"
           :name="item.meta.icon"
         />
         <span
@@ -59,8 +59,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
 import { isExternal } from '@/utils/validate'
 import SidebarItemLink from './SidebarItemLink.vue'
-
 @Component({
+  // Set 'name' here to prevent uglifyjs from causing recursive component not work
+  // See https://medium.com/haiiro-io/element-component-name-with-vue-class-component-f3b435656561 for detail
   name: 'SidebarItem',
   components: {
     SidebarItemLink
@@ -70,22 +71,20 @@ export default class extends Vue {
   @Prop({ required: true }) private item!: RouteConfig
   @Prop({ default: false }) private isCollapse!: boolean
   @Prop({ default: true }) private isFirstLevel!: boolean
-  @Prop({ default:'' }) private basePath!: string
-
+  @Prop({ default: '' }) private basePath!: string
   get showingChildNumber() {
     if (this.item.children) {
-      const showingChilren = this.item.children.filter((item) => {
+      const showingChildren = this.item.children.filter((item) => {
         if (item.meta && item.meta.hidden) {
           return false
         } else {
           return true
         }
       })
-      return showingChilren.length
+      return showingChildren.length
     }
     return 0
   }
-
   get theOnlyOneChild() {
     if (this.showingChildNumber > 1) {
       return null
@@ -97,9 +96,10 @@ export default class extends Vue {
         }
       }
     }
-    return { ...this.item, path: ''}
+    // If there is no children, return itself with path removed,
+    // because this.basePath already conatins item's path information
+    return { ...this.item, path: '' }
   }
-
   private resolvePath(routePath: string) {
     if (isExternal(routePath)) {
       return routePath
