@@ -1,16 +1,14 @@
-import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
-import store from '@/store'
+import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators'
+import { login, logout, getUserInfo } from '@/api/users'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
-import { login, logout, getUserInfo } from '@/api/user'
-import { remove } from 'js-cookie'
+import store from '@/store'
 
 export interface IUserState {
-  token: string,
-  name: string,
-  avatar: string,
-  introduction: string,
-  roles: string[],
-  email: string
+  token: string
+  name: string
+  avatar: string
+  introduction: string
+  roles: string[]
 }
 
 @Module({ dynamic: true, store, name: 'user' })
@@ -20,7 +18,6 @@ class User extends VuexModule implements IUserState {
   public avatar = ''
   public introduction = ''
   public roles: string[] = []
-  public email = ''
 
   @Mutation
   private SET_TOKEN(token: string) {
@@ -57,7 +54,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public ResetToekn() {
+  public ResetToken() {
     removeToken()
     this.SET_TOKEN('')
     this.SET_ROLES([])
@@ -68,11 +65,12 @@ class User extends VuexModule implements IUserState {
     if (this.token === '') {
       throw Error('GetUserInfo: token is undefined!')
     }
-    const { data } = await getUserInfo({})
+    const { data } = await getUserInfo({ /* Your params here */ })
     if (!data) {
       throw Error('Verification failed, please Login again.')
     }
     const { roles, name, avatar, introduction } = data.user
+    // roles must be a non-empty array
     if (!roles || roles.length <= 0) {
       throw Error('GetUserInfo: roles must be a non-null array!')
     }
@@ -85,7 +83,7 @@ class User extends VuexModule implements IUserState {
   @Action
   public async LogOut() {
     if (this.token === '') {
-      throw Error('Logout: token is undefined!')
+      throw Error('LogOut: token is undefined!')
     }
     await logout()
     removeToken()

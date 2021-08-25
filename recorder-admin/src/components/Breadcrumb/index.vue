@@ -48,6 +48,7 @@ export default class extends Vue {
     const first = matched[0]
     if (!this.isDashboard(first)) {
       matched = [
+        // eslint-disable-next-line
         { path: '/dashboard', meta: { title: 'Dashboard' } } as RouteRecord
       ].concat(matched)
     }

@@ -16,14 +16,14 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon name="user"/>
+          <svg-icon name="user" />
         </span>
         <el-input
           ref="username"
           v-model="loginForm.username"
           name="username"
           type="text"
-          auto-complete="on"
+          autocomplete="on"
           placeholder="username"
         />
       </el-form-item>
@@ -44,7 +44,7 @@
         />
         <span
           class="show-pwd"
-          @click="showpwd"
+          @click="showPwd"
         >
           <svg-icon :name="passwordType === 'password' ? 'eye-off' : 'eye-on'" />
         </span>
@@ -53,7 +53,7 @@
       <el-button
         :loading="loading"
         type="primary"
-        style="width: 100%; margin-bottom:30px;"
+        style="width:100%; margin-bottom:30px;"
         @click.native.prevent="handleLogin"
       >
         Sign in
@@ -61,8 +61,8 @@
 
       <div style="position:relative">
         <div class="tips">
-          <span>username: admin</span>
-          <span>password: any</span>
+          <span> username: admin </span>
+          <span> password: any </span>
         </div>
       </div>
     </el-form>
@@ -73,10 +73,9 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
-import { Form as ELForm, Input } from 'element-ui'
+import { Form as ElForm, Input } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 import { isValidUsername } from '@/utils/validate'
-
 @Component({
   name: 'Login'
 })
@@ -88,40 +87,26 @@ export default class extends Vue {
       callback()
     }
   }
-
   private validatePassword = (rule: any, value: string, callback: Function) => {
-    if (value.length < 0) {
+    if (value.length < 6) {
       callback(new Error('The password can not be less than 6 digits'))
     } else {
       callback()
     }
   }
-
   private loginForm = {
     username: 'admin',
-    password: '11111'
+    password: '111111'
   }
-
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: 'blur' }],
     password: [{ validator: this.validatePassword, trigger: 'blur' }]
   }
-
   private passwordType = 'password'
   private loading = false
   private showDialog = false
   private redirect?: string
   private otherQuery: Dictionary<string> = {}
-
-  private getOtherQuery(query: Dictionary<string>) {
-    return Object.keys(query).reduce((acc, cur) => {
-      if (cur !== 'redirect') {
-        acc[cur] = query[cur]
-      }
-      return acc
-    }, {} as Dictionary<string>)
-  }
-
   @Watch('$route', { immediate: true })
   private onRouteChange(route: Route) {
     const query = route.query as Dictionary<string>
@@ -130,15 +115,13 @@ export default class extends Vue {
       this.otherQuery = this.getOtherQuery(query)
     }
   }
-
-  mounted () {
+  mounted() {
     if (this.loginForm.username === '') {
       (this.$refs.username as Input).focus()
     } else if (this.loginForm.password === '') {
       (this.$refs.password as Input).focus()
     }
   }
-
   private showPwd() {
     if (this.passwordType === 'password') {
       this.passwordType = ''
@@ -149,9 +132,8 @@ export default class extends Vue {
       (this.$refs.password as Input).focus()
     })
   }
-
   private handleLogin() {
-    (this.$refs.loginForm as ELForm).validate(async(valid: boolean) => {
+    (this.$refs.loginForm as ElForm).validate(async(valid: boolean) => {
       if (valid) {
         this.loading = true
         await UserModule.Login(this.loginForm)
@@ -159,6 +141,7 @@ export default class extends Vue {
           path: this.redirect || '/',
           query: this.otherQuery
         })
+        // Just to simulate the time of the request
         setTimeout(() => {
           this.loading = false
         }, 0.5 * 1000)
@@ -167,8 +150,15 @@ export default class extends Vue {
       }
     })
   }
+  private getOtherQuery(query: Dictionary<string>) {
+    return Object.keys(query).reduce((acc, cur) => {
+      if (cur !== 'redirect') {
+        acc[cur] = query[cur]
+      }
+      return acc
+    }, {} as Dictionary<string>)
+  }
 }
-
 </script>
 
 <style lang="scss">
@@ -179,13 +169,11 @@ export default class extends Vue {
     input::first-line { color: $lightGray; }
   }
 }
-
 .login-container {
   .el-input {
     display: inline-block;
     height: 47px;
     width: 85%;
-
     input {
       height: 47px;
       background: transparent;
@@ -195,14 +183,12 @@ export default class extends Vue {
       color: $lightGray;
       caret-color: $loginCursorColor;
       -webkit-appearance: none;
-
       &:-webkit-autofill {
         box-shadow: 0 0 0px 1000px $loginBg inset !important;
         -webkit-text-fill-color: #fff !important;
       }
     }
   }
-
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.1);
@@ -218,7 +204,6 @@ export default class extends Vue {
   width: 100%;
   overflow: hidden;
   background-color: $loginBg;
-
   .login-form {
     position: relative;
     width: 520px;
@@ -227,19 +212,16 @@ export default class extends Vue {
     margin: 0 auto;
     overflow: hidden;
   }
-
   .tips {
     font-size: 14px;
     color: #fff;
     margin-bottom: 10px;
-
     span {
       &:first-of-type {
         margin-right: 16px;
       }
     }
   }
-
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $darkGray;
@@ -247,10 +229,8 @@ export default class extends Vue {
     width: 30px;
     display: inline-block;
   }
-
   .title-container {
     position: relative;
-
     .title {
       font-size: 26px;
       color: $lightGray;
@@ -259,7 +239,6 @@ export default class extends Vue {
       font-weight: bold;
     }
   }
-
   .show-pwd {
     position: absolute;
     right: 10px;
