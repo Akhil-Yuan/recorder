@@ -1,0 +1,43 @@
+/* pages/progress/progress.wxss */
+page {
+    box-sizing: border-box;
+}
+
+.van-icon {
+    position: absolute !important;
+    top: 50%;
+    right: 10rpx;
+    transform: translateY(-50%);
+}
+
+.report {
+    position: relative;
+    margin: 25rpx 15rpx;
+    padding: 0 40rpx;
+    height: 100rpx;
+    background-color: white;
+}
+
+.report text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.record {
+    position: relative;
+    margin: 4rpx 15rpx;
+    padding: 0 40rpx;
+    height: 100rpx;
+    background-color: white;
+}
+
+.record text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.active {
+    background-color: #eeeff1;
+}

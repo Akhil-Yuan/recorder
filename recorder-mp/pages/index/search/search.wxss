@@ -1,0 +1,103 @@
+/* pages/search/search.wxss */
+.search{
+  margin: 0 25rpx;
+}
+.back{
+  line-height: 130rpx;
+}
+.top{
+  height: 130rpx;
+  position: relative;
+}
+.van-search{
+  width: 95%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f6f6f6 !important;
+}
+.van-search__content{
+  width: 50% !important;
+  background-color: #ffffff !important;
+  display: inline-block !important;
+}
+.van-search__action{
+  width: 10% !important;
+}
+.cancel{
+  font-size: small;
+}
+.hr {
+  width: 95%;
+  height: 1rpx;
+  margin: 25rpx auto;
+  background-color: #dfdedda9;
+}
+.delete{
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  float: right;
+  margin-right: 30rpx;
+}
+.btn{
+  padding: 10rpx 40rpx;
+  background-color: #dcdcdc9a;
+  font-size: small;
+  color: rgba(0, 0, 0, 0.432);
+  border-radius: 15px;
+  margin-right: 25rpx;
+  margin-bottom: 25rpx;
+  float: left;
+}
+.title1{
+  font-size: small;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.courseOne{
+  height: 160rpx;
+  margin: 25rpx;
+  padding: 25rpx;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+image{
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+}
+.content{
+  height: 100rpx;
+  display: inline-block;
+  margin-left: 50rpx;
+}
+.title, .teacher{
+  display: block;
+  line-height: 50rpx;
+}
+.title{
+  font-size: small;
+  font-weight: 600;
+}
+.teacher{
+  font-size: x-small;
+  color: rgba(0, 0, 0, 0.568);
+}
+.icon{
+  line-height: 150rpx;
+  float: right;
+}
+.courseNum{
+  margin-top: 20rpx;
+  font-size: x-small;
+  color: rgba(0, 0, 0, 0.568);
+}
+.not{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: 300rpx;
+  color: rgba(0, 0, 0, 0.445);
+}

@@ -1,0 +1,58 @@
+/* pages/setting/setting.wxss */
+page {
+    box-sizing: border-box;
+}
+
+.van-icon {
+    position: absolute !important;
+    top: 50%;
+    right: 10rpx;
+    transform: translateY(-50%);
+}
+
+.changePassword {
+    position: relative;
+    margin-top: 24rpx;
+    padding: 0 40rpx;
+    height: 100rpx;
+    background-color: white;
+}
+
+.changePassword text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.feedback {
+    position: relative;
+    margin-top: 24rpx;
+    padding: 0 40rpx;
+    height: 100rpx;
+    background-color: white;
+}
+
+.feedback text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.buttom {
+    position: absolute;
+    bottom: 50rpx;
+    left: 0rpx;
+    width: 100%;
+}
+
+.buttom .changeAccount {
+    margin-bottom: 18rpx;
+}
+
+.buttom .exit button {
+    color: red;
+}
+
+.active {
+    background-color: #eeeff1;
+}

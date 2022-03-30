@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-search": "../../../miniprogram_npm/vant-weapp/search/index",
+    "van-dialog": "../../../miniprogram_npm/vant-weapp/dialog/index",
+    "van-swipe-cell": "../../../miniprogram_npm/vant-weapp/swipe-cell/index",
+    "van-cell": "../../../miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "../../../miniprogram_npm/vant-weapp/cell-group/index",
+    "van-tabbar": "../../../miniprogram_npm/vant-weapp/tabbar/index",
+    "van-tabbar-item": "../../../miniprogram_npm/vant-weapp/tabbar-item/index"
+  },
+  "navigationBarTitleText": "消息"
+}

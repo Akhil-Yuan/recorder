@@ -1,0 +1,47 @@
+/* pages/progressReport/progressReport.wxss */
+page {
+    background-color: #eeeff1;
+    box-sizing: border-box;
+}
+
+.item-style {
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
+}
+
+.text-style {
+    text-align: center;
+}
+
+.board {
+    overflow: hidden;
+    border-bottom: 2rpx solid #ececec;
+    background-color: #f7f8fa;
+}
+
+/*列布局*/
+.cell {
+    display: flex;
+    margin: 15rpx;
+}
+
+.cell .cell-bd {
+    flex: 1;
+    position: relative;
+}
+
+/**只显示一行*/
+.date {
+    font-size: 30rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    margin: 30rpx 35rpx;
+}
+
+/* 文件展示 */
+.voiceOprt {
+    display: inline-block;
+    margin: 0 10rpx;
+}

@@ -1,0 +1,31 @@
+<!--pages/info/index/index.wxml-->
+<view class="index">
+  <view class="top">
+    <van-search
+      value="{{ value }}"
+      placeholder="搜索"
+      input-align="center"
+      bind:search="infoSearch"
+    />
+    <text class="addIcon iconfont icon-zengjia"></text>
+  </view>
+  <view class="addressList">
+    <text class="iconfont icon-shouye1 icon"></text>
+    <text class="title">通讯录</text>
+  </view>
+  <view class="inbox" bindtap="toInbox">
+    <text class="iconfont icon-shoujianxiang icon"></text>
+    <text class="title">收件箱</text>
+  </view>
+  <view id="infoList" class="infoList" scroll-y scroll-top="{{scrollNum}}">
+    <van-swipe-cell right-width="{{ 65 }}" wx:for="{{ emailList }}" wx:key="index" bind:click="toInfo" data-infoContent="{{item.content}}" id="info{{item.emailId}}">
+      <van-cell-group>
+        <image src="https://img.yzcdn.cn/vant/cat.jpeg" mode="aspectFill"></image>
+        <text class="title">{{item.title}}</text>
+        <text class="time">{{item.gmtCreate}}</text>
+      </van-cell-group>
+      <view slot="right" style="line-height: 130rpx;" bindtap="clearInfo" data-clearObj="{{item}}">删除</view>
+    </van-swipe-cell>
+    <van-dialog id="van-dialog" />
+  </view>
+</view>

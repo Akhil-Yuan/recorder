@@ -1,0 +1,63 @@
+/* pages/info/index/index.wxss */
+.top{
+  height: 130rpx;
+}
+.van-search{
+  width: 90% !important;
+  float: left;
+  background-color: #f6f6f6 !important;
+}
+.van-search__content{
+  background-color: #ffffff !important;
+}
+.addIcon{
+  width: 10%;
+  line-height: 130rpx;
+  background-color: #f6f6f6;
+  display: inline-block;
+}
+.icon{
+  font-size: x-large;
+  margin: 0 25rpx;
+}
+.title{
+  font-weight: 600;
+}
+.addressList, .inbox{
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 25rpx;
+  margin-bottom: 25rpx;
+  background-color: #ffffff;
+}
+image{
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  margin: 15rpx 25rpx;
+}
+.infoList{
+  background-color: #ffffff;
+}
+.van-swipe-cell{
+  height: 130rpx;
+  line-height: 130rpx;
+  margin: 0 25rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.075);
+}
+.time{
+  float: right;
+  margin-right: 25rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+.van-swipe-cell__right {
+  display: inline-block;
+  text-align: center;
+  width: 140rpx;
+  height: 130rpx;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: #f44;
+}

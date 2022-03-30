@@ -1,0 +1,46 @@
+/* pages/myCourse/myCourse.wxss */
+.top{
+  height: 130rpx;
+  position: relative;
+}
+.courseList{
+  height: 100%;
+  width: 100%;
+}
+.courseOne{
+  height: 160rpx;
+  margin: 25rpx;
+  padding: 25rpx;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+image{
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+}
+.content{
+  height: 100rpx;
+  display: inline-block;
+  margin-left: 50rpx;
+}
+.title, .teacher{
+  display: block;
+  line-height: 50rpx;
+}
+.title{
+  font-size: small;
+}
+.teacher{
+  font-size: x-small;
+  color: rgba(0, 0, 0, 0.568);
+}
+.icon{
+  line-height: 150rpx;
+  float: right;
+}
+.courseNum{
+  margin-top: 20rpx;
+  font-size: x-small;
+  color: rgba(0, 0, 0, 0.568);
+}

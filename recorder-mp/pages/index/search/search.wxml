@@ -1,0 +1,36 @@
+<!--pages/search/search.wxml-->
+<view class="search">
+  <view class="top">
+    <text class="iconfont icon-fanhui back" bindtap="toBack"></text>
+    <van-search
+    value="{{ value }}"
+    placeholder="找课程"
+    show-action
+    bind:search="search"
+    bind:cancel="onCancel"
+    cancel-class="cancel"
+    />
+  </view>
+  <!-- 搜索主页 -->
+  <view class="record" wx:if="{{showRecent}}">
+    <view class="title1">最近搜索<text class="iconfont icon-shanchu delete" bindtap="deleteRecent"></text></view>
+    <view class="hr"></view>
+    <view class="recordList">
+      <text class="btn" wx:for="{{recentList}}" wx:key="index">{{item}}</text>
+    </view>
+  </view>
+  <!-- 搜索列表 -->
+  <view class="courseList" wx:elif="{{showList}}">
+    <view class="courseOne" wx:for="{{courseList}}" wx:key="index" bindtap="toCourseOne" data-courseId="{{item.courseId}}">
+      <image src="https://img.yzcdn.cn/vant/cat.jpeg" mode="aspectFill"></image>
+      <view class="content">    
+        <text class="title">{{item.courseName}}</text>
+        <text class="teacher">{{item.courseTeacher}}</text>
+      </view>
+      <text class="iconfont icon-qianjin icon"></text>
+      <view class="courseNum">课程号:{{item.courseId}}</view>
+    </view>
+  </view>
+  <!-- 搜索无结果 -->
+  <view class="not" wx:else="showNot">暂无搜索结果</view>
+</view>

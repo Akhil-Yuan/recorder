@@ -1,0 +1,33 @@
+<!--pages/mine/mine.wxml-->
+<view>
+    <!-- 昵称、头像 -->
+    <view class="personalfile" hover-class="active" bindtap="toPersonalFile">
+        <image style="margin-right: 5px;" src="{{headAddr}}"></image>
+        {{nickname}}
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+    <!-- 我的课程 -->
+    <view class="mineclass" hover-class="active" bindtap="toMyCourse">
+        <view class="iconfont icon-kecheng icon" style="font-size:xx-large;"></view>
+        <text>我的课程</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+    <!-- 成长记录 -->
+    <view class="progress" hover-class="active" bindtap="toProgress">
+        <view class="iconfont icon-chengchangjilu icon" style="font-size:xx-large;"></view>
+        <text>成长记录</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+    <!-- 积分商城 -->
+    <view class="shop" hover-class="active">
+        <view class="iconfont icon-liwu icon" style="font-size:xx-large;"></view>
+        <text>积分商城</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+    <!-- 设置 -->
+    <view class="setting" hover-class="active" bindtap="toSetting">
+        <view class="iconfont icon-shezhi icon" style="font-size:xx-large;"></view>
+        <text>设置</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+</view>

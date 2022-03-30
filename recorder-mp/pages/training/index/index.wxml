@@ -1,0 +1,16 @@
+<!--pages/training/index/index.wxml-->
+<view class="index">
+  <van-search
+    value="{{ value }}"
+    input-align="center"
+    placeholder="请输入搜索关键词"
+    bind:search="trainSearch"
+  />
+  <view class="trainList">
+    <view class="trainOne" bindtap="training" wx:for="{{ trainList }}" wx:key="index" data-execId="{{ item.execId }}" data-content="{{ item.content }}">
+      <text class="iconfont icon-zuoye icon1"></text>
+      <text class="title">{{item.name}}</text>
+      <text class="iconfont icon-qianjin icon"></text>
+    </view>
+  </view>
+</view>

@@ -2,12 +2,58 @@
   "pages": [
     "pages/record/record",
     "pages/login/login",
-    "pages/enroll/enroll"
+    "pages/enroll/enroll",
+    "pages/index/index/index",
+    "pages/index/course/course",
+    "pages/index/search/search",
+    "pages/index/myCourse/myCourse",
+    "pages/training/index/index",
+    "pages/info/index/index",
+    "pages/info/inbox/inbox",
+    "pages/my/mine/mine",
+    "pages/my/setting/setting",
+    "pages/my/classRecord/classRecord",
+    "pages/my/progress/progress",
+    "pages/my/personalfile/personalfile"
   ],
   "window": {
     "navigationBarBackgroundColor": "#007acc",
     "navigationBarTitleText": "录音系统",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#42bff2"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#80848f",
+    "backgroundColor": "#fafafa",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index/index",
+        "text": "首页",
+        "iconPath": "style/icon/index1.png",
+        "selectedIconPath": "style/icon/index2.png"
+      },
+      {
+        "pagePath": "pages/info/index/index",
+        "text": "消息",
+        "iconPath": "style/icon/info1.png",
+        "selectedIconPath": "style/icon/info2.png"
+      },
+      {
+        "pagePath": "pages/training/index/index",
+        "text": "练习",
+        "iconPath": "style/icon/practice1.png",
+        "selectedIconPath": "style/icon/practice2.png"
+      },
+      {
+        "pagePath": "pages/my/mine/mine",
+        "text": "我的",
+        "iconPath": "style/icon/my1.png",
+        "selectedIconPath": "style/icon/my2.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,4 +1,7 @@
 <!-- index.wxml -->
+<view class="top">
+  <view class="content">多加练习</view>
+</view>
 <scroll-view>
   <view wx:if="{{voicesList}}" class="common-list" style="margin-bottom:120rpx;">
     <block wx:for="{{voicesList}}" wx:key="index">

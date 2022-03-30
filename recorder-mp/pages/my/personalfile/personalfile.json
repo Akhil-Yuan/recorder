@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-field": "/miniprogram_npm/vant-weapp/field/index",
+    "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
+    "van-picker": "/miniprogram_npm/vant-weapp/picker/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
+  },
+  "navigationBarTitleText": "编辑资料",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#fff"
+}
