@@ -89,11 +89,15 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           // 向后端服务器发数据
-          this.$confirm("布置成功", "", {
+          // 第一二个参数分别是消息内容和标题，为了语义化明显，统一写在第三个options对象中
+          this.$confirm("", "", {
+            title: "布置成功",
+            message: "",
+            center: true,
             confirmButtonText: "继续布置",
             cancelButtonText: "返回",
           }).then(() => {
-              
+            this.$router.go(0)
           }).catch(() => {
             this.$router.back();
           });

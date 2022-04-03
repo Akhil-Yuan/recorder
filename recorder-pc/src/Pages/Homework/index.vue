@@ -24,8 +24,12 @@
         <el-dropdown trigger="click" size="medium">
           <i class="el-icon-more more"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看详情</el-dropdown-item>
-            <el-dropdown-item>删除作业</el-dropdown-item>
+            <el-dropdown-item>
+              <div @click="seeDetail">查看详情</div>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div @click="deleteHomework">删除作业</div>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -39,9 +43,27 @@ export default {
   methods: {
     toAssignment() {
       this.$router.push({
-        path: "/Assignment",
+        name: "assignment",
       });
     },
+    deleteHomework() {
+      this.$confirm("", "", {
+        title: "确认删除此作业吗",
+        message: "该作业也会在学生端删除",
+        center: true,
+        confirmButtonText: "确认删除",
+        cancelButtonText: "返回",
+      })
+        .then(() => {
+          // 向后端发送请求
+        })
+        .catch(() => {});
+    },
+    seeDetail() {
+      this.$router.push({
+        name: 'detail'
+      })
+    }
   },
 };
 </script>

@@ -40,6 +40,18 @@ export default {
         this.isAssign = true;
         this.isDetail = false;
         this.isCheckout = false;
+      } else if (name == "detail") {
+        this.tabbarNeeded = false;
+        this.breadNeeded = true;
+        this.isAssign = false;
+        this.isDetail = true;
+        this.isCheckout = false;
+      } else if (name == "checkout") {
+        this.tabbarNeeded = false;
+        this.breadNeeded = true;
+        this.isAssign = false;
+        this.isDetail = false;
+        this.isCheckout = true;
       }
     },
   },

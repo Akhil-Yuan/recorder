@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Assignment from '../Pages/Homework/Assignment'
 import Homework from '../Pages/Homework'
 import Courseware from '../Pages/Courseware'
+import Detail from '../Pages/Homework/Detail'
 export default new VueRouter({
     routes: [{
         // 测试用的重定向
@@ -11,7 +12,7 @@ export default new VueRouter({
     }, {
         name: 'homework',
         path: '/homework',
-        component: Homework
+        component: Homework,
     }, {
         name: 'courseware',
         path: '/courseware',
@@ -20,5 +21,9 @@ export default new VueRouter({
         name: 'assignment',
         path: '/assignment',
         component: Assignment
-    }, ]
+    }, {
+        name: 'detail',
+        path: '/detail',
+        component: Detail
+    }]
 })
