@@ -1,22 +1,22 @@
 <template>
   <div class="con">
-    <Courseware />
-    <Homework />
+    <Tabbar />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Courseware from './Pages/Courseware'
-import Homework from './Pages/Homework'
+import Tabbar from './components/Tabbar'
 export default {
   name: 'App',
   components: {
-    Courseware,
-    Homework
+    Tabbar
   }
 }
 </script>
 
 <style>
-
+* {
+  box-sizing: border-box;
+}
 </style>
