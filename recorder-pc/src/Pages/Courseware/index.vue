@@ -14,7 +14,8 @@
           :limit="1"
           :data="params"
           :auto-upload="false"
-          :on-exceed="x"
+          :on-exceed="overLoad"
+          :before-upload="checkFile"
         >
           <el-button slot="trigger" size="small">浏览</el-button>
           <div slot="tip" class="el-upload_tip">单个文件限制在1G内</div>
@@ -104,7 +105,13 @@ export default {
     confirmDelete() {
       this.visible_delete = false;
     },
-    x(files, fileList) {
+    checkFile(file) {
+      // 提取文件后缀名
+      let fileType = file.name.slice(file.name.indexOf(".") + 1);
+      console.log(fileType);
+      // 进行筛选
+    },
+    overLoad(files, fileList) {
       console.log(files, fileList);
       this.$message('一次只能上传一个课件');
     }
