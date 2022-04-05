@@ -1,6 +1,6 @@
 <template>
   <div class="con">
-    <Tabbar />
+    <Tabbar v-if="!this.flag"/>
     <router-view></router-view>
   </div>
 </template>
@@ -11,7 +11,17 @@ export default {
   name: 'App',
   components: {
     Tabbar
-  }
+  },
+  data() {
+    return {
+      flag: ''
+    }
+  },
+  watch: {
+    $route(newValue) {
+      this.flag = newValue.meta.islogin
+    }
+  },
 }
 </script>
 

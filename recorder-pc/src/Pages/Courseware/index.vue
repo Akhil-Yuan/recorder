@@ -11,9 +11,10 @@
           ref="upload"
           action=""
           accept="image/*, .pdf, .ppt, .doc"
-          multiple
+          :limit="1"
           :data="params"
           :auto-upload="false"
+          :on-exceed="x"
         >
           <el-button slot="trigger" size="small">浏览</el-button>
           <div slot="tip" class="el-upload_tip">单个文件限制在1G内</div>
@@ -103,6 +104,10 @@ export default {
     confirmDelete() {
       this.visible_delete = false;
     },
+    x(files, fileList) {
+      console.log(files, fileList);
+      this.$message('一次只能上传一个课件');
+    }
   },
 };
 </script>

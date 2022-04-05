@@ -113,7 +113,9 @@ export default {
       });
     },
     back() {
-      this.$router.back();
+      this.$router.push({
+        name: 'homework'
+      });
     },
   },
 };
