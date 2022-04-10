@@ -62,7 +62,7 @@ export default {
 .con {
   margin: 0 auto;
   padding: 8px 0 10px 0;
-  width: 700px;
+  width: 950px;
 }
 .con a {
   font-weight: 600;

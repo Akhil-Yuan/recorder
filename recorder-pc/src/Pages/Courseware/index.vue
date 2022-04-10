@@ -123,7 +123,7 @@ export default {
 .con {
   margin: 0 auto;
   padding: 12px 0 0 8px;
-  width: 700px;
+  width: 950px;
   height: 500px;
   background-color: rgb(214, 229, 234);
 }

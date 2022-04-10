@@ -18,14 +18,14 @@
       <el-col :span="3" :offset="0">8</el-col>
       <el-col :span="3" :offset="0">3</el-col>
       <el-col :span="2" :offset="0">
-        <span class="readover">批阅</span>
+        <span class="readover" @click="toCheckout">批阅</span>
       </el-col>
       <el-col :span="1" :offset="0">
         <el-dropdown trigger="click" size="medium">
           <i class="el-icon-more more"></i>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <div @click="seeDetail">查看详情</div>
+              <div @click="toDetail">查看详情</div>
             </el-dropdown-item>
             <el-dropdown-item>
               <div @click="deleteHomework">删除作业</div>
@@ -59,11 +59,16 @@ export default {
         })
         .catch(() => {});
     },
-    seeDetail() {
+    toDetail() {
       this.$router.push({
-        name: 'detail'
-      })
-    }
+        name: "detail",
+      });
+    },
+    toCheckout() {
+      this.$router.push({
+        name: "checkout",
+      });
+    },
   },
 };
 </script>
@@ -71,8 +76,8 @@ export default {
 <style scoped>
 .con {
   margin: 0 auto;
-  padding: 12px 0 0 8px;
-  width: 700px;
+  padding: 12px;
+  width: 950px;
   height: 500px;
   background-color: rgb(214, 229, 234);
 }
@@ -85,6 +90,7 @@ export default {
 }
 .readover {
   cursor: pointer;
+  color: #4eb6f6;
 }
 .more {
   cursor: pointer;

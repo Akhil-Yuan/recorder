@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .con {
   margin: 0 auto;
-  width: 700px;
+  width: 950px;
   height: 330px;
   background-color: rgb(214, 229, 234);
 }

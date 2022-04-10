@@ -4,6 +4,7 @@ import Assignment from '../Pages/Homework/Assignment'
 import Homework from '../Pages/Homework'
 import Courseware from '../Pages/Courseware'
 import Detail from '../Pages/Homework/Detail'
+import Checkout from '../Pages/Homework/Checkout'
 import Login from '../Pages/Login'
 export default new VueRouter({
     routes: [{
@@ -35,6 +36,13 @@ export default new VueRouter({
         name: 'detail',
         path: '/detail',
         component: Detail,
+        meta: {
+            islogin: false
+        }
+    }, {
+        name: 'checkout',
+        path: '/checkout',
+        component: Checkout,
         meta: {
             islogin: false
         }
