@@ -25,7 +25,7 @@
           <span>发布范围：</span>
           <!-- 下面div等接口弄好之后用v-for渲染 -->
           <div class="class">
-            <el-checkbox v-model="checked" class="className">课堂1</el-checkbox>
+            <el-checkbox class="className" @change="getClassId()">课堂1</el-checkbox>
           </div>
         </div>
         <!-- 上传到服务器、取消 -->
@@ -90,9 +90,13 @@ export default {
   name: "Courseware",
   data() {
     return {
-      checked: "",
+      // 存放用户选择的课堂
+      checked: {},
+      // 上传界面的开关
       visible_upload: false,
+      // 删除提示的开关
       visible_delete: false,
+      // 请求携带的参数，应该要与checked相关
       params: {},
     };
   },
@@ -113,7 +117,10 @@ export default {
     },
     overLoad(files, fileList) {
       console.log(files, fileList);
-      this.$message('一次只能上传一个课件');
+      this.$message("一次只能上传一个课件");
+    },
+    getClassId() {
+      console.log(11);
     }
   },
 };
