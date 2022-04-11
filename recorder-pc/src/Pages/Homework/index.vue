@@ -40,6 +40,11 @@
 <script>
 export default {
   name: "Homework",
+  data() {
+    return {
+      homeworkList: {}
+    }
+  },
   methods: {
     toAssignment() {
       this.$router.push({
