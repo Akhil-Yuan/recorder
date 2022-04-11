@@ -124,7 +124,7 @@ export default {
   margin: 0 auto;
   padding: 12px 0 0 8px;
   width: 950px;
-  height: 500px;
+  height: 550px;
   background-color: rgb(214, 229, 234);
 }
 .el-upload_tip {

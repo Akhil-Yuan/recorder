@@ -78,7 +78,7 @@ export default {
   margin: 0 auto;
   padding: 12px;
   width: 950px;
-  height: 500px;
+  height: 550px;
   background-color: rgb(214, 229, 234);
 }
 .types {

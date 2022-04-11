@@ -53,7 +53,7 @@ export default {
   margin: 0 auto;
   padding: 12px 80px 0px 68px;
   width: 570px;
-  height: 500px;
+  height: 550px;
   background-color: rgb(214, 229, 234);
 }
 .login {

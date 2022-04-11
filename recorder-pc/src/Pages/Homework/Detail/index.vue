@@ -37,7 +37,7 @@ export default {
 .con {
   margin: 0 auto;
   width: 950px;
-  height: 330px;
+  height: 550px;
   background-color: rgb(214, 229, 234);
 }
 .msgBox {
