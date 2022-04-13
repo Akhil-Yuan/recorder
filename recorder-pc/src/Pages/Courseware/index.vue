@@ -25,7 +25,11 @@
           <span>发布范围：</span>
           <!-- 下面div等接口弄好之后用v-for渲染 -->
           <div class="class">
-            <el-checkbox class="className" @change="getClassId()">课堂1</el-checkbox>
+            <el-checkbox-group v-model="checkList">
+              <el-checkbox class="className" label="classId1">课堂1</el-checkbox>
+              <el-checkbox class="className" label="classId2">课堂2</el-checkbox>
+            </el-checkbox-group>
+            
           </div>
         </div>
         <!-- 上传到服务器、取消 -->
@@ -91,7 +95,7 @@ export default {
   data() {
     return {
       // 存放用户选择的课堂
-      checked: {},
+      checkList: [],
       // 上传界面的开关
       visible_upload: false,
       // 删除提示的开关

@@ -1,5 +1,6 @@
 <template>
   <div class="con">
+    <div class="bigTitle">嗓音收集系统-教师端</div>
     <el-form
       :model="form"
       ref="form"
@@ -7,6 +8,7 @@
       label-width="60px"
       label-position="right"
       size="normal"
+      hide-required-asterisk
     >
       <el-form-item label="账号" prop="account">
         <el-input v-model="form.account"></el-input>
@@ -41,8 +43,8 @@ export default {
     login() {
       // 后端接口
       this.$router.replace({
-        name: 'homework'
-      })
+        name: "homework",
+      });
     },
   },
 };
@@ -51,10 +53,15 @@ export default {
 <style scoped>
 .con {
   margin: 0 auto;
-  padding: 12px 80px 0px 68px;
+  padding: 0px 80px 0px 55px;
   width: 570px;
   height: 550px;
+  text-align: center;
   background-color: rgb(214, 229, 234);
+}
+.bigTitle {
+  margin-bottom: 50px;
+  font-size: 28px;
 }
 .login {
   position: relative;

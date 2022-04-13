@@ -19,7 +19,7 @@ export default {
   name: "Tabbar",
   data() {
     return {
-      tabbarNeeded: true,
+      tabbarNeeded: false,
       breadNeeded: false,
       isAssign: false,
       isDetail: false,
@@ -52,6 +52,12 @@ export default {
         this.isAssign = false;
         this.isDetail = false;
         this.isCheckout = true;
+      } else {
+        this.tabbarNeeded = false;
+        this.breadNeeded = false;
+        this.isAssign = false;
+        this.isDetail = false;
+        this.isCheckout = false;
       }
     },
   },
