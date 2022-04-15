@@ -1,28 +1,23 @@
 <template>
   <div class="con">
-    <Tabbar v-if="!this.flag"/>
+    <Tabbar v-if="!this.flag" />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Tabbar from './components/Tabbar'
+import Tabbar from "./components/Tabbar";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Tabbar
+    Tabbar,
   },
-  data() {
-    return {
-      flag: ''
-    }
+  computed: {
+    flag() {
+      return this.$route.meta.isLogin;
+    },
   },
-  watch: {
-    $route(newValue) {
-      this.flag = newValue.meta.islogin
-    }
-  },
-}
+};
 </script>
 
 <style>
@@ -31,5 +26,8 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+a {
+  text-decoration: none;
+  color: black;
+}
 </style>

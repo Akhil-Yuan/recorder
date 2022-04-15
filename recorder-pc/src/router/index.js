@@ -6,6 +6,7 @@ import Courseware from '../Pages/Courseware'
 import Detail from '../Pages/Homework/Detail'
 import Checkout from '../Pages/Homework/Checkout'
 import Login from '../Pages/Login'
+import Register from '../Pages/Register'
 export default new VueRouter({
     routes: [{
         // 测试用的重定向
@@ -16,42 +17,49 @@ export default new VueRouter({
         path: '/homework',
         component: Homework,
         meta: {
-            islogin: false
+            isLogin: false
         }
     }, {
         name: 'courseware',
         path: '/courseware',
         component: Courseware,
         meta: {
-            islogin: false
+            isLogin: false
         }
     }, {
         name: 'assignment',
         path: '/assignment',
         component: Assignment,
         meta: {
-            islogin: false
+            isLogin: false
         }
     }, {
         name: 'detail',
         path: '/detail',
         component: Detail,
         meta: {
-            islogin: false
+            isLogin: false
         }
     }, {
         name: 'checkout',
         path: '/checkout',
         component: Checkout,
         meta: {
-            islogin: false
+            isLogin: false
         }
     }, {
         name: 'login',
         path: '/login',
         component: Login,
         meta: {
-            islogin: true
+            isLogin: true
+        }
+    }, {
+        name: 'register',
+        path: '/register',
+        component: Register,
+        meta: {
+            isLogin: true
         }
     }]
 })

@@ -16,7 +16,10 @@
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password"></el-input>
       </el-form-item>
-      <span class="forgetPwd">忘记密码</span>
+      <div class="miniOptions">
+        <router-link to="/register" class="register">立即注册</router-link>
+        <span class="forgetPwd">忘记密码</span>
+      </div>
       <el-form-item>
         <el-button type="primary" @click="login" class="login">登录</el-button>
       </el-form-item>
@@ -67,6 +70,16 @@ export default {
   position: relative;
   top: -10px;
   width: 100%;
+}
+.miniOptions {
+  padding-bottom: 25px;
+}
+.register {
+  position: relative;
+  top: -18px;
+  left: 60px;
+  float: left;
+  font-size: 13px;
 }
 .forgetPwd {
   position: relative;

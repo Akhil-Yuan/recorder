@@ -188,7 +188,6 @@ export default {
   left: 20px;
 }
 .delete_confirm {
-  width: 30%;
   position: absolute;
   bottom: 20px;
   right: 20px;
