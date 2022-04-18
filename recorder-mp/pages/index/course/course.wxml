@@ -1,0 +1,32 @@
+<!--pages/course/course.wxml-->
+<view class="course">
+  <view class="top">
+    <text class="courseName">课程名称</text>
+  </view>
+  <view>
+    <van-tabs active="{{ active }}" bind:change="onChange">
+      <van-tab title="课程">
+        <view class="content">
+          <text class="iconfont icon-neirongguanli icon"></text>
+          <text class="title">课程内容</text>
+          <text class="iconfont icon-qianjin into"></text>
+        </view>
+        <view class="note">
+          <text class="iconfont icon-xuexijihua icon"></text>
+          <text class="title">学习计划</text>
+          <text class="iconfont icon-qianjin into"></text>
+        </view>
+      </van-tab>
+      <van-tab title="作业">
+        <view class="homework">
+          <view class="iconfont icon-zuoye hwIcon"></view>
+          <view class="hwContent">
+            <view class="hwkName">作业一</view>
+            <view class="state2">待批阅</view>
+          </view>
+        </view>
+      </van-tab>
+      <van-tab title="更多"></van-tab>
+    </van-tabs>
+  </view>
+</view>

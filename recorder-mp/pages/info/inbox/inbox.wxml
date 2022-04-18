@@ -1,0 +1,12 @@
+<!--pages/info/inbox/inbox.wxml-->
+<view class="infoList">
+    <van-swipe-cell right-width="{{ 65 }}" wx:for="{{ emailList }}" wx:key="index" bindtap="toInfo" data-infoContent="{{item.content}}">
+      <van-cell-group>
+        <image src="https://img.yzcdn.cn/vant/cat.jpeg" mode="aspectFill"></image>
+        <text class="title">{{item.title}}</text>
+        <text class="time">{{item.gmtCreate}}</text>
+      </van-cell-group>
+      <view slot="right" style="line-height: 130rpx;" bindtap="clearInfo" data-clearObj="{{item}}">删除</view>
+    </van-swipe-cell>
+    <van-dialog id="van-dialog" />
+  </view>

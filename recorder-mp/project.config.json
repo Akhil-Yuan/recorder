@@ -5,9 +5,9 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "enhance": false,
+    "urlCheck": false,
+    "es6": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -22,6 +22,7 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
     "useApiHostProcess": true,
@@ -30,19 +31,21 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
+    "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "bundle": false
+    "disableUseStrict": false,
+    "minifyWXML": true,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.16.0",
-  "appid": "wx7bc59f877b05b52e",
-  "projectname": "%E5%BD%95%E9%9F%B3%E7%B3%BB%E7%BB%9F",
+  "appid": "wxe626ab68965d47b3",
+  "projectname": "recorder-mp-new",
   "debugOptions": {
     "hidedInDevtools": []
   },

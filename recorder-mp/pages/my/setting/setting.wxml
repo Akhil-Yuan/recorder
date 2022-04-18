@@ -1,0 +1,19 @@
+<!--pages/setting/setting.wxml-->
+<view>
+    <view class="changePassword" hover-class="active">
+        <text>修改密码</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+    <view class="feedback" hover-class="active">
+        <text>用户反馈</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+</view>
+<view class="buttom">
+    <view class="changeAccount">
+        <button bindtap="change">切换账号</button>
+    </view>
+    <view class="exit">
+        <button bindtap="exit">退出登录</button>
+    </view>
+</view>

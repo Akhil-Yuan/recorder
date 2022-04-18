@@ -1,5 +1,6 @@
 // record.js
 var util = require('../../utils/util.js')
+const $api = require('../../utils/api.js').API
 const recorderManager = wx.getRecorderManager()
 const innerAudioContext = wx.createInnerAudioContext()
 Page({
@@ -17,8 +18,10 @@ Page({
     phone: '',  //用户手机号码
     username: '', // 用户名
     organize: '',  // 组织
+    content: '',//练习内容
+    execId: '',//练习id
   },
-  onLoad: function() {
+  onLoad: function(options) {
     wx.showLoading({
       title: '加载中',
     })
@@ -26,9 +29,8 @@ Page({
       // 获取缓存的上传状态、上传时间、手机号码
       uploadedTip: wx.getStorageSync('uploadedTip'),
       uploadedTime: wx.getStorageSync('uploadedTime'),
-      phone: wx.getStorageSync('phone'),
-      username: wx.getStorageSync('username'),
-      organize: wx.getStorageSync('organize')
+      content: options.content,
+      execId: options.execId
     })
     this.data.showTxt = this.data.recordTxt.slice()
     var storeVoices = []
@@ -47,11 +49,8 @@ Page({
       })
     }
     var timestamp = Date.parse(new Date())
-    // 获取用户是否登录以及登录时长
-    var expiration = wx.getStorageSync('expiration')
-    var isUser = wx.getStorageSync('isUser')
     wx.hideLoading({})
-    if(!isUser) { // 判断用户是否登录
+    if(!wx.getStorageSync('isLogin')) { // 判断用户是否登录
       wx.showModal({
         title: '提示',
         content: '暂未登录，登录后可使用录音系统功能',
@@ -60,19 +59,6 @@ Page({
           if(res.confirm) {
             wx.redirectTo({
               url: '../login/login'
-            })
-          }
-        }
-      })
-    } else if (!isUser && expiration < timestamp) { // 判断用户登录状态是否过期
-      wx.showModal({
-        title: '提示',
-        content: '登录状态已过期，请重新登录',
-        showCancel: false,
-        success(res) {
-          if(res.confirm) {
-            wx.redirectTo({
-              url: '../login/login',
             })
           }
         }
@@ -197,6 +183,21 @@ Page({
         tempFilePath: that.data.src,
         success(res) {
           res.text = that.data.showTxt[that.data.index] // 添加文本
+          //添加录音id
+          switch(res.text) {
+            case '元音a（5s）':
+              res.code = 1
+              break
+            case '元音i（5s）':
+              res.code = 2
+              break
+            case '元音u（5s）':
+              res.code = 3
+              break
+            case '唱段（10s）':
+              res.code = 4
+              break
+          }
           that.data.voicesList = that.data.voicesList.concat(res)  // 将获取到的数组添加到voicesList
           that.setData({
             voicesList: that.data.voicesList
@@ -245,47 +246,33 @@ Page({
     })
     wx.setStorageSync('uploadedTip', this.data.uploadedTip) // 设置上传状态
     wx.setStorageSync('uploadedTime', this.data.uploadedTime) // 设置上传时间
-    const db = wx.cloud.database()
     // 将所有录音上传
+    var that = this
     for (let i = 0; i < this.data.voicesList.length; i++) {
       var filePath = this.data.voicesList[i].savedFilePath
-      var txt = this.data.voicesList[i].text
-      wx.cloud.uploadFile({ // 上传到云存储
-        cloudPath: 'voices/' + txt + '_' + this.data.phone + '_' + uploadCounter + '.m4a',
+      var code = this.data.voicesList[i].code
+      //请求参数
+      wx.uploadFile({
         filePath,
-        createTime,
+        name: 'file',
+        url: 'http://47.107.101.153/applet/studentExec/loadExeRecode',
+        header: {
+          'Content-Type': 'multipart/form-data',
+          'token': wx.getStorageSync('token')
+        },
+        formData: {
+          'execId': that.data.execId,
+          'code': code
+        },
         success: res => {
-          console.log('上传成功', res)
-          // var name = res.fileID.slice(res.fileID.lastIndexOf('/') + 1)
-          if (res.fileID.slice(res.fileID.lastIndexOf('/') + 1).search('元音a') !== -1) {
-            var name = 'a'
-          } else if (res.fileID.slice(res.fileID.lastIndexOf('/') + 1).search('元音i') !== -1) {
-            var name = 'i'
-          } else if (res.fileID.slice(res.fileID.lastIndexOf('/') + 1).search('元音u') !== -1) {
-            var name = 'u'
-          } else if (res.fileID.slice(res.fileID.lastIndexOf('/') + 1).search('唱段') !== -1) {
-            var name = 'song'
+          if(res.data.code === 200) {
+            that.toastTip('上传成功！')
           } else {
-            console.log('查询失败')
+            that.toastTip('上传失败！')
           }
-          db.collection('voices') // 上传到数据库
-          .add({
-            data: {
-              name,
-              filePath,
-              phone: this.data.phone,
-              createTime: Date.parse(new Date()),
-              fileid: res.fileID,
-              username: this.data.username,
-              organize: this.data.organize
-            }
-          })
-          .then(res => {
-            console.log('录音文件上传到数据库成功', res)
-          })
-          .catch(err => {
-            console.log('录音文件上传到数据库失败', err)
-          })
+        },
+        fail: err => {
+          that.toastTip('提交失败！')
         }
       })
     }

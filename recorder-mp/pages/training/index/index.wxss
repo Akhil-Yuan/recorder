@@ -1,0 +1,32 @@
+/* pages/training/index/index.wxss */
+.van-search{
+  background-color: #f6f6f6 !important;
+}
+.van-search__content{
+  background-color: #ffffff !important;
+}
+.trainOne{
+  height: 130rpx;
+  line-height: 130rpx;
+  margin: 0 25rpx;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+.title{
+  display: inline-block;
+  font-size: small;
+  margin-left: 20rpx;
+}
+.icon{
+  float: right;
+  margin-right: 25rpx;
+}
+.icon1{
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: x-large;
+  color: rgba(0, 0, 0, 0.651);
+}

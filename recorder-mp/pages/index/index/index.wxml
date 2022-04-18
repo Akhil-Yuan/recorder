@@ -1,0 +1,51 @@
+<!--pages/index/index.wxml-->
+<view class="index">
+  <van-search
+  value="{{ value }}"
+  placeholder="找课程"
+  bindtap="toSearch"
+  />
+  <view class="list">
+    <view class="new">
+      <text class="title1">最近常用</text>
+      <van-card
+        wx:for="{{ recentList }}"
+        desc="{{item.courseTeacher}}"
+        title="{{item.courseName}}"
+        wx:key="index"
+        thumb="https://img.yzcdn.cn/vant/cat.jpeg"
+        thumb-class="cardImg"
+        title-class="cardTitle"
+        bindtap="toCourse"
+        data-courseId="{{item.courseId}}"
+      >
+        <view slot="footer">
+          <view size="mini">课程号：{{item.courseId}}</view>
+        </view>
+      </van-card>
+    </view>
+    <view class="common">
+      <text class="title1">常用</text>
+      <view class="commonList">
+        <view class="myCourse" bindtap="myCourse">
+          <text class="iconfont icon-kecheng1 icon1"></text>
+          <text class="title">我的课程</text>
+          <text class="iconfont icon-qianjin icon"></text>
+        </view>
+        <view class="note">
+          <text class="iconfont icon-bijiben-copy icon1"></text>
+          <text class="title">笔记本</text>
+          <text class="iconfont icon-qianjin icon"></text>
+        </view>
+      </view>
+    </view>
+    <view class="recommend">
+      <text class="title1">推荐课程</text>
+      <view class="recCoures">
+        <image src="https://img.yzcdn.cn/vant/cat.jpeg" mode="aspectFill"></image>
+        <text class="title">课程名称</text>
+        <button bindtap="addCourse">加入课程</button>
+      </view>
+    </view>
+  </view>
+</view>

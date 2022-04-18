@@ -1,0 +1,29 @@
+<!--pages/personalfile/personalfile.wxml-->
+<view>
+    <button class="savebtn" bindtap="saveData">保存</button>
+</view>
+<view class="pic_box w">
+    <image class="pic" src="{{headAddr}}" bindtap="changeImage"></image>
+</view>
+<view class="nickname w" bindtap="nicknameSelect">
+    <text>昵称</text>
+    <van-icon name="arrow" size="20px" color="grey" />
+    <input type="text" value="{{nickname}}" focus="{{nicknameFocus}}" bindinput="nicknameChange" maxlength="10" id="nickname" />
+</view>
+<view class="signature w" bindtap="signatureSelect">
+    <text>个性签名</text>
+    <van-icon name="arrow" size="20px" color="grey" />
+    <input type="text" value="{{signature}}" focus="{{signatureFocus}}" bindinput="signatureChange" maxlength="15" id="signature" />
+</view>
+<view class="sex w">
+    <view bindtap="ShowPicker" class="sexual">
+        <text>性别</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+        <text class="cur_sexual">{{sexArr[sexIndex]}}</text>
+
+    </view>
+    <van-popup show="{{ show }}" bind:close="pickerClose" position="bottom">
+        <van-picker columns="{{ sexArr }}" bind:change="sexChange" show-toolbar title="性别" bind:cancel="onCancel" bind:confirm="onConfirm" />
+        <!-- 极力吐槽这里，有时候使用左边模拟器打开的页面显示picker是没有样式的，结果在手机上看就有。百度了半天 -->
+    </van-popup>
+</view>

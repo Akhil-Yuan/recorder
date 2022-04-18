@@ -1,4 +1,6 @@
 // pages/enroll/enroll.js
+const $api = require('../../utils/api.js').API
+
 Page({
   data: {
     phonenumber: '',
@@ -6,12 +8,11 @@ Page({
     name: '',
     organize: '',
     password: '',
-    passwordAck: '',
-    openid: ''
+    passwordAck: ''
   },
 
   onLoad() {
-    this.getOpenid()
+
   },
 
   // 警告弹窗
@@ -20,20 +21,6 @@ Page({
       title: '提示',
       content,
       showCancel: false
-    })
-  },
-
-  // 获取用户openid
-  getOpenid() {
-    var that = this
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-      complete: res => {
-        var openid = res.result.openId
-        that.setData({
-          openid
-        })
-      }
     })
   },
 
@@ -81,8 +68,6 @@ Page({
     var that = this
     var phoneReg = /^1[0-9]{10}$/
     var emailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-    const db = wx.cloud.database()
-    const user = db.collection('user')
     // 输入框校验
     if (that.data.name === '') {
       that.warnTip('请输入姓名')
@@ -108,43 +93,36 @@ Page({
         content: '每个微信用户只能注册一个手机号，请确认手机号码填写正确',
         success: res => {
           if(res.confirm) {
-            user
-              .where({
-                phoneNumber: parseInt(that.data.phonenumber)
-              })
-              .get()
-                .then(res => {
-                  if(res.data.length !== 0) {
-                    that.warnTip('该手机号已注册')
-                  } else {
-                    user.add({
-                      data: {
-                        name: that.data.name,
-                        organize: that.data.organize,
-                        phoneNumber: parseInt(that.data.phonenumber),
-                        password: that.data.password,
-                        email: that.data.email,
-                        isExamined: false
-                      }
-                    }).then(res => {
-                      wx.showToast({
-                        title: '已注册，待审核',
+            $api.isExistPhone({
+              phone: parseInt(that.data.phonenumber)
+            })
+            .then(res => {
+              if(res.data.data) {
+                that.warnTip('该手机号已注册')
+              } else {
+                $api.enroll({
+                  name: that.data.name,
+                  groupNum: that.data.organize,
+                  phone: parseInt(that.data.phonenumber),
+                  password: that.data.password,
+                  email: that.data.email
+                }).then(res => {
+                  if(res.data) {
+                    wx.showToast({
+                      title: '已注册，待审核',
+                    })
+                    setTimeout(() => {
+                      wx.navigateBack({
+                        delta: 1,
                       })
-                      setTimeout(() => {
-                        wx.navigateBack({
-                          delta: 1,
-                        })
-                      }, 1000)
-                    })
-                    .catch(err => {
-                      console.log('用户注册失败', err)
-                    })
+                    }, 1000)
                   }
-                  console.log('查找数据库成功', res)
                 })
                 .catch(err => {
-                  console.log('查找数据库失败', err)
+                  that.warnTip('用户注册失败！')
                 })
+              }
+            })
           }
         }
       })

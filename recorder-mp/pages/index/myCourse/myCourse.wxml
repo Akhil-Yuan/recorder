@@ -1,0 +1,22 @@
+<!--pages/myCourse/myCourse.wxml-->
+<view class="courseList">
+  <view class="top">
+    <van-search
+    value="{{ value }}"
+    placeholder="找课程"
+    bind:focus="toSearch"
+    input-align="center"
+    />
+  </view>
+  <view>
+    <view class="courseOne" wx:for="{{ mycourseList }}" wx:key="index" bindtap="courseOne" data-courseId="{{item.courseId}}">
+      <image src="https://img.yzcdn.cn/vant/cat.jpeg" mode="aspectFill"></image>
+      <view class="content">    
+        <text class="title">{{item.courseName}}</text>
+        <text class="teacher">{{item.courseTeacher}}</text>
+      </view>
+      <text class="iconfont icon-qianjin icon"></text>
+      <view class="courseNum">课程号:{{item.courseId}}</view>
+    </view>
+  </view>
+</view>

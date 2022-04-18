@@ -1,0 +1,12 @@
+<!--pages/progress/progress.wxml-->
+<view>
+    <view class="report" hover-class="active" bindtap="toProgressReport">
+        <text>成长报告</text>
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+    <view class="record" hover-class="active" bindtap="toClassRecord" wx:for="{{courseList}}" wx:key="courseId" data-courseId="{{item.courseId}}" data-courseName="{{item.courseName}}">
+        <text>《{{item.courseName}}》课程录音</text>
+        <!-- <text>xxx课程录音</text> -->
+        <van-icon name="arrow" size="20px" color="grey" />
+    </view>
+</view>

@@ -1,0 +1,65 @@
+/* pages/personalfile/personalfile.wxss */
+page {
+    box-sizing: border-box;
+}
+
+.w {
+    margin: 0 40rpx;
+}
+
+.van-icon {
+    float: right;
+}
+
+.savebtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0rpx;
+    background-color: #42a5f5;
+    color: white;
+}
+
+.pic_box {
+    margin-top: 10rpx;
+    height: 200rpx;
+    text-align: center;
+    border-top: 2rpx solid rgb(248, 248, 248);
+}
+
+.pic_box .pic {
+    margin-top: 20rpx;
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.nickname,
+.signature,
+.sex {
+    padding-top: 50rpx;
+    height: 100rpx;
+    border-bottom: 2rpx solid #ccc;
+    font-size: 30rpx;
+}
+
+.sexual {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.cur_sexual {
+    float: right;
+    margin-right: 20rpx;
+    opacity: .4;
+}
+
+.nickname input,
+.signature input {
+    float: right;
+}
+
+.picker {
+    height: 200rpx;
+}

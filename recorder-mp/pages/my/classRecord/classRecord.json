@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-button": "../../../miniprogram_npm/vant-weapp/button/index",
+    "van-notice-bar": "../../../miniprogram_npm/vant-weapp/notice-bar/index"
+  },
+  "navigationBarTitleText": "成长报告",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#fff"
+}
