@@ -30,35 +30,39 @@ export default {
     console.log(this.$route);
   },
   watch: {
-    $route({ name }) {
-      if (name == "homework" || name == "courseware") {
-        this.tabbarNeeded = true;
-        this.breadNeeded = false;
-      } else if (name == "assignment") {
-        this.tabbarNeeded = false;
-        this.breadNeeded = true;
-        this.isAssign = true;
-        this.isDetail = false;
-        this.isCheckout = false;
-      } else if (name == "detail") {
-        this.tabbarNeeded = false;
-        this.breadNeeded = true;
-        this.isAssign = false;
-        this.isDetail = true;
-        this.isCheckout = false;
-      } else if (name == "checkout") {
-        this.tabbarNeeded = false;
-        this.breadNeeded = true;
-        this.isAssign = false;
-        this.isDetail = false;
-        this.isCheckout = true;
-      } else {
-        this.tabbarNeeded = false;
-        this.breadNeeded = false;
-        this.isAssign = false;
-        this.isDetail = false;
-        this.isCheckout = false;
-      }
+    $route: {
+      immediate: true,
+      deep: true,
+      handler({ name }) {
+        if (name == "homework" || name == "courseware") {
+          this.tabbarNeeded = true;
+          this.breadNeeded = false;
+        } else if (name == "assignment") {
+          this.tabbarNeeded = false;
+          this.breadNeeded = true;
+          this.isAssign = true;
+          this.isDetail = false;
+          this.isCheckout = false;
+        } else if (name == "detail") {
+          this.tabbarNeeded = false;
+          this.breadNeeded = true;
+          this.isAssign = false;
+          this.isDetail = true;
+          this.isCheckout = false;
+        } else if (name == "checkout") {
+          this.tabbarNeeded = false;
+          this.breadNeeded = true;
+          this.isAssign = false;
+          this.isDetail = false;
+          this.isCheckout = true;
+        } else {
+          this.tabbarNeeded = false;
+          this.breadNeeded = false;
+          this.isAssign = false;
+          this.isDetail = false;
+          this.isCheckout = false;
+        }
+      },
     },
   },
 };
