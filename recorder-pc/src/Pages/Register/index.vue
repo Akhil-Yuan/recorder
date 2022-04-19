@@ -10,7 +10,7 @@
       size="normal"
       hide-required-asterisk
     >
-      <el-form-item label="姓名">
+      <el-form-item label="姓名" prop="teacherName">
         <el-input v-model="form.teacherName"></el-input>
       </el-form-item>
       <el-form-item label="手机号" prop="account">
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import API from '../../utils/api'
 export default {
   name: "Register",
   data() {
@@ -57,6 +58,7 @@ export default {
         teacherName: "",
       },
       rules: {
+        teacherName: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         account: [{ required: true, message: "请输入手机号", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         checkpwd: [
@@ -65,9 +67,9 @@ export default {
             validator: validatePass,
           },
         ],
-        organization: [
-          { required: true, message: "请输入组织码", trigger: "blur" },
-        ],
+        // organization: [
+        //   { required: true, message: "请输入组织码", trigger: "blur" },
+        // ],
       },
     };
   },
@@ -75,7 +77,15 @@ export default {
     register(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          API.register({
+            password: this.form.password,
+            phone: this.form.account,
+            teacherName: this.form.teacherName
+          }).then(() => {
+            console.log('成功注册');
+          }).catch(() => {
+            console.log('有问题');
+          })
         } else {
           alert("error submit!!");
           return false;

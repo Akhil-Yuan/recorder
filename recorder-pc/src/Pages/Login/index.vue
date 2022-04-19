@@ -4,7 +4,6 @@
     <el-form
       :model="form"
       ref="form"
-      :rules="rules"
       label-width="60px"
       label-position="right"
       size="normal"
@@ -28,6 +27,7 @@
 </template>
 
 <script>
+import API from "../../utils/api";
 export default {
   name: "Login",
   data() {
@@ -36,18 +36,24 @@ export default {
         account: "",
         password: "",
       },
-      rules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-      },
+      // rules: {
+      //   account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+      //   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+      // },
     };
   },
   methods: {
     login() {
-      // 后端接口
-      this.$router.replace({
-        name: "homework",
-      });
+      API.login({
+        password: this.form.account,
+        phone: this.form.password,
+      }).then(() => {
+        this.$router.replace({
+          name: "homework",
+        });
+      }).catch((err) => {
+        console.log(err);
+      })
     },
   },
 };

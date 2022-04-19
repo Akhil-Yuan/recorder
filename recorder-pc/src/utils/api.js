@@ -1,22 +1,23 @@
 import Axios from 'axios';
 
-const GET = 'GET';
+// const GET = 'GET';
 const POST = 'POST';
-const PUT = 'PUT';
-const FORM = 'FORM';
-const DELETE = 'DELETE';
+// const PUT = 'PUT';
+// const FORM = 'FORM';
+// const DELETE = 'DELETE';
 
 const baseURL = 'http://47.107.101.153:80/'
-const DATA = null
+// const DATA = null
 
 function request(method, url, data, header) {
     return new Promise((resolve, reject) => {
-        header.token = localStorage.getItem('token')
+        if (localStorage.getItem('token')) {
+            header.token = localStorage.getItem('token')
+        }
         Axios({
             url: baseURL + url,
             method: method,
             data: data,
-            headers: header
         }).then((response) => {
             if (response.code.code == 200) {
                 resolve(response)
@@ -29,8 +30,8 @@ function request(method, url, data, header) {
     })
 }
 const API = {
-    // 接口列表
+    // 教师登录接口
+    login: (data) => request(POST, `system/teacher/login`, data, { 'Content-Type': 'application/json' }),
+    register: (data) => request(POST, `system/teacher/register`, data, { 'Content-Type': 'application/json' })
 }
-module.exports = {
-    API: API
-}
+export default API
