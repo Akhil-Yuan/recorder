@@ -85,10 +85,14 @@ export default {
             teacherName: this.form.teacherName,
           })
             .then((res) => {
-              console.log(res);
+              if (res.code == 200) {
+                console.log("成功", res);
+              } else {
+                alert(res.message);
+              }
             })
             .catch((err) => {
-              console.log('网络出错', err);
+              console.log("网络出错", err);
             });
         } else {
           alert("error submit!!");
