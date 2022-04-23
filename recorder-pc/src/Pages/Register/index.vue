@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import API from '../../utils/api'
+import { registerFunc } from "../../api/api";
 export default {
   name: "Register",
   data() {
@@ -58,7 +58,9 @@ export default {
         teacherName: "",
       },
       rules: {
-        teacherName: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+        teacherName: [
+          { required: true, message: "请输入姓名", trigger: "blur" },
+        ],
         account: [{ required: true, message: "请输入手机号", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         checkpwd: [
@@ -77,15 +79,17 @@ export default {
     register(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          API.register({
+          registerFunc("register", {
             password: this.form.password,
             phone: this.form.account,
-            teacherName: this.form.teacherName
-          }).then(() => {
-            console.log('成功注册');
-          }).catch(() => {
-            console.log('有问题');
+            teacherName: this.form.teacherName,
           })
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log('网络出错', err);
+            });
         } else {
           alert("error submit!!");
           return false;

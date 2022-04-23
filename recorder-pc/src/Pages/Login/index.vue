@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import API from "../../utils/api";
+import { loginFunc } from "../../api/api";
 export default {
   name: "Login",
   data() {
@@ -44,16 +44,20 @@ export default {
   },
   methods: {
     login() {
-      API.login({
-        password: this.form.account,
-        phone: this.form.password,
-      }).then(() => {
-        this.$router.replace({
-          name: "homework",
-        });
-      }).catch((err) => {
-        console.log(err);
+      loginFunc("login", {
+        password: this.form.password,
+        phone: this.form.account,
       })
+        .then((res) => {
+          if (res.code == 200) {
+            console.log("成功", res);
+          } else {
+            alert(res.message);
+          }
+        })
+        .catch((err) => {
+          console.log("网络出错", err);
+        });
     },
   },
 };
