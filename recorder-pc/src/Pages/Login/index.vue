@@ -46,7 +46,7 @@ export default {
     login() {
       // 后端接口
       this.$router.replace({
-        name: "homework",
+        name: "index",
       });
     },
   },
