@@ -1,16 +1,34 @@
 <template>
   <div class="con">
-    <Tabbar v-if="!this.flag" />
+    <Header v-if="!this.flag" />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Tabbar from "./components/Tabbar";
+import Header from '@/components/Header.vue'
 export default {
   name: "App",
   components: {
-    Tabbar,
+    Header
+  },
+  provide () {
+    return {
+      reload: this.reload
+    }
+  },
+  data () {
+    return {
+      isRouterAlive: true
+    }
+  },
+  methods: {
+    reload () {
+      this.isRouterAlive = false
+      this.$nextTick(function () {
+        this.isRouterAlive = true
+      })
+    }
   },
   computed: {
     flag() {
