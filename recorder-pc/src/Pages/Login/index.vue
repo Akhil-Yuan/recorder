@@ -8,12 +8,13 @@
       label-position="right"
       size="normal"
       hide-required-asterisk
+      @keyup.native.enter="login"
     >
       <el-form-item label="账号" prop="account">
         <el-input v-model="form.account"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="form.password"></el-input>
+        <el-input v-model="form.password" show-password></el-input>
       </el-form-item>
       <div class="miniOptions">
         <router-link to="/register" class="register">立即注册</router-link>
@@ -51,6 +52,7 @@ export default {
         .then((res) => {
           if (res.code == 200) {
             console.log("成功", res);
+            this.$router.replace("/homework");
           } else {
             alert(res.message);
           }
