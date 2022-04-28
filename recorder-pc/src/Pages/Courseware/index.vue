@@ -104,7 +104,9 @@ export default {
       params: {},
     };
   },
-  mounted() {},
+  mounted() {
+    
+  },
   methods: {
     submitUpload() {
       this.$refs.upload.submit();

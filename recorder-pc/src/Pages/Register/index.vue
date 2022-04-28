@@ -10,7 +10,10 @@
       size="normal"
       hide-required-asterisk
     >
-      <el-form-item label="账号" prop="account">
+      <el-form-item label="姓名" prop="teacherName">
+        <el-input v-model="form.teacherName"></el-input>
+      </el-form-item>
+      <el-form-item label="手机号" prop="account">
         <el-input v-model="form.account"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
@@ -33,6 +36,7 @@
 </template>
 
 <script>
+import { registerFunc } from "../../api/api";
 export default {
   name: "Register",
   data() {
@@ -51,9 +55,13 @@ export default {
         password: "",
         checkpwd: "",
         organization: "",
+        teacherName: "",
       },
       rules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        teacherName: [
+          { required: true, message: "请输入姓名", trigger: "blur" },
+        ],
+        account: [{ required: true, message: "请输入手机号", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         checkpwd: [
           {
@@ -61,9 +69,9 @@ export default {
             validator: validatePass,
           },
         ],
-        organization: [
-          { required: true, message: "请输入组织码", trigger: "blur" },
-        ],
+        // organization: [
+        //   { required: true, message: "请输入组织码", trigger: "blur" },
+        // ],
       },
     };
   },
@@ -71,7 +79,21 @@ export default {
     register(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          registerFunc("register", {
+            password: this.form.password,
+            phone: this.form.account,
+            teacherName: this.form.teacherName,
+          })
+            .then((res) => {
+              if (res.code == 200) {
+                console.log("成功", res);
+              } else {
+                alert(res.message);
+              }
+            })
+            .catch((err) => {
+              console.log("网络出错", err);
+            });
         } else {
           alert("error submit!!");
           return false;

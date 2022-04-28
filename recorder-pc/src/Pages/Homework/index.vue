@@ -38,14 +38,22 @@
 </template>
 
 <script>
+import { getTeacherCourses } from "../../api/api";
 export default {
   name: "Homework",
   data() {
     return {
-      homeworkList: {}
-    }
+      homeworkList: {},
+    };
+  },
+  mounted() {
+    this.getData()
   },
   methods: {
+    async getData() {
+      let data = await getTeacherCourses('getTeacherCourses')
+      console.log(data);
+    },
     toAssignment() {
       this.$router.push({
         name: "assignment",

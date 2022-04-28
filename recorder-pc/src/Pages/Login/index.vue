@@ -4,17 +4,17 @@
     <el-form
       :model="form"
       ref="form"
-      :rules="rules"
       label-width="60px"
       label-position="right"
       size="normal"
       hide-required-asterisk
+      @keyup.native.enter="login"
     >
       <el-form-item label="账号" prop="account">
         <el-input v-model="form.account"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="form.password"></el-input>
+        <el-input v-model="form.password" show-password></el-input>
       </el-form-item>
       <div class="miniOptions">
         <router-link to="/register" class="register">立即注册</router-link>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { loginFunc } from "../../api/api";
 export default {
   name: "Login",
   data() {
@@ -36,18 +37,29 @@ export default {
         account: "",
         password: "",
       },
-      rules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-      },
+      // rules: {
+      //   account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+      //   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+      // },
     };
   },
   methods: {
     login() {
-      // 后端接口
-      this.$router.replace({
-        name: "homework",
-      });
+      loginFunc("login", {
+        password: this.form.password,
+        phone: this.form.account,
+      })
+        .then((res) => {
+          if (res.code == 200) {
+            console.log("成功", res);
+            this.$router.replace("/homework");
+          } else {
+            alert(res.message);
+          }
+        })
+        .catch((err) => {
+          console.log("网络出错", err);
+        });
     },
   },
 };

@@ -8,6 +8,16 @@ import Checkout from '../Pages/Homework/Checkout'
 import Login from '../Pages/Login'
 import Register from '../Pages/Register'
 export default new VueRouter({
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return {
+                x: 0,
+                y: 0
+            }
+        }
+    },
     routes: [{
         // 测试用的重定向
         path: '/',
