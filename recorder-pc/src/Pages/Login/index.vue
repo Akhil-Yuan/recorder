@@ -29,6 +29,7 @@
 
 <script>
 import { loginFunc } from "../../api/api";
+import storage from 'store'
 export default {
   name: "Login",
   data() {
@@ -50,8 +51,9 @@ export default {
         phone: this.form.account,
       })
         .then((res) => {
-          if (res.code == 200) {
+          if (res.code === 200) {
             console.log("成功", res);
+            storage.set('token', res.data)
             this.$router.replace("/homework");
           } else {
             alert(res.message);
