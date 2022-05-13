@@ -11,8 +11,8 @@
       <el-col :span="3" :offset="0">操作</el-col>
     </el-row>
     <!-- 下面用v-for渲染 -->
-    <el-row class="detail">
-      <el-col :span="5" :offset="0">作业标题</el-col>
+    <el-row class="detail" v-for="item in homeworkList" :key="item.courseId">
+      <el-col :span="5" :offset="0">{{item.courseName}}</el-col>
       <el-col :span="4" :offset="0">课堂名称</el-col>
       <el-col :span="6" :offset="0">2022/3/23 23:00</el-col>
       <el-col :span="3" :offset="0">8</el-col>
@@ -47,12 +47,13 @@ export default {
     };
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
   methods: {
     async getData() {
-      let data = await getTeacherCourses('getTeacherCourses')
+      let {data} = await getTeacherCourses("getTeacherCourses");
       console.log(data);
+      this.homeworkList = data;
     },
     toAssignment() {
       this.$router.push({
